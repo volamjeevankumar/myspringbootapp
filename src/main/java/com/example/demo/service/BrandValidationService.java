@@ -33,7 +33,7 @@ public class BrandValidationService {
 			return false;
 	}
 		catch(Exception e ) {
-			throw new BrandServiceException("brand service changed code for new branch server not accessible");
+			throw new BrandServiceException("brand service   changed code for new branch server not accessible");
 
 		}
 		finally {}
