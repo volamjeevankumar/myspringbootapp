@@ -6,6 +6,7 @@ import com.example.demo.entity.BrandMarketChannel;
 import com.example.demo.entity.Department;
 import com.example.demo.entity.request.ProductRequest;
 
+
 public class ProductResponse implements Comparable<ProductResponse> {
 	private String description;
 	

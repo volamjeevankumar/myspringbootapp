@@ -4,6 +4,7 @@ import java.net.URI;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -16,9 +17,13 @@ import com.example.demo.exceptionfamily.BrandServiceException;
 public class BrandValidationService {
 	@Autowired
 	private RestTemplate resttemplate;
+
+	@Value("${brandservice.hostname}")
+	private String brandServiceHostname;
+
 	public boolean validateBrand(String brand) throws Exception {
 		String brandLowerCase = brand.toLowerCase();
-		URI uri=new URI("http://localhost:8090/brandsList");
+		URI uri=new URI(brandServiceHostname+"/brandsList");
 		try {
 		ResponseEntity<List<String>> brandNames =
 		        resttemplate.exchange(uri,HttpMethod.GET,null,new ParameterizedTypeReference<List<String>>() {});
