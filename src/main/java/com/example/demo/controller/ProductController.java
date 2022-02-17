@@ -39,7 +39,7 @@ public class ProductController {
 	@Autowired
 	private UpdateProductUnitsService updateProductUnitsService;
 
-	@GetMapping("/products/")
+	@GetMapping("/products")
 	public BulkProductsResponse findProductsByBrand(@RequestParam String brandname) {
 
 		return samebrandproducts.sameBrandProductsMethod(brandname);
