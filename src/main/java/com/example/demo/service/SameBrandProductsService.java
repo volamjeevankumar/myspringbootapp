@@ -16,9 +16,8 @@ public class SameBrandProductsService {
 	private BulkProductsResponse bulkproductresponseobject=new BulkProductsResponse();
 	public BulkProductsResponse sameBrandProductsMethod(String brandName){
 	List<ProductResponse> products=productrepo.findByBrandmarketchannelBrand(brandName);
-	System.out.println(products.get(0));
-	System.out.println(products.get(1));
-	System.out.println(products.get(0).equals(products.get(1)));
+
+
 	bulkproductresponseobject.setProducts(products);
 	Collections.sort(bulkproductresponseobject.getProducts(),(p1,p2)->
 		{return p1.getDescription().compareTo(p2.getDescription());});

@@ -1,28 +1,17 @@
 package com.example.demo.entity;
 
 import com.example.demo.entity.request.ProductRequest;
-
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+@Getter
+@Setter
+@ToString
+@NoArgsConstructor
 public class Department {
-	String name;
+private String name;
 	public Department(ProductRequest d)
 	{	this.name = d.getName();}
-	
-	@Override
-	public String toString() {
-		return "Department [name=" + name + "]";
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	
-	public Department() {
-		super();
-	}
-
-	
-	
-	
 
 }

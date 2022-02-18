@@ -76,7 +76,6 @@ public class ProductResponse implements Comparable<ProductResponse> {
 	public ProductResponse(ProductRequest insertdata) {
 		
 		this.description = insertdata.getDescription();
-		
 		this.units = insertdata.getUnits();
 		this.price = insertdata.getPrice();
 		this.brandmarketchannel = new BrandMarketChannel(insertdata);

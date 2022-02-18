@@ -1,8 +1,15 @@
 package com.example.demo.controller;
 
-import java.net.URISyntaxException;
-import java.util.UUID;
-
+import com.example.demo.entity.request.ProductRequest;
+import com.example.demo.entity.request.UnitsUpdateRequest;
+import com.example.demo.entity.response.BulkProductsResponse;
+import com.example.demo.entity.response.ProductResponse;
+import com.example.demo.exceptionfamily.ProductNotFoundException;
+import com.example.demo.repo.Productrepo;
+import com.example.demo.service.BrandChannelValidateAndUpdateService;
+import com.example.demo.service.SameBrandProductsService;
+import com.example.demo.service.UpdateProductUnitsService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,18 +20,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-import com.example.demo.entity.request.ProductRequest;
-import com.example.demo.entity.request.UnitsUpdateRequest;
-import com.example.demo.entity.response.BulkProductsResponse;
-import com.example.demo.entity.response.ProductResponse;
-import com.example.demo.exceptionfamily.BrandChannelException;
-import com.example.demo.exceptionfamily.ProductNotFoundException;
-import com.example.demo.repo.Productrepo;
-import com.example.demo.service.BrandChannelValidateAndUpdateService;
-import com.example.demo.service.SameBrandProductsService;
-import com.example.demo.service.UpdateProductUnitsService;
+import javax.validation.Valid;
+import java.util.UUID;
 
 @RestController
+@Slf4j
 public class ProductController {
 	@Autowired
 	private Productrepo productrepo;
@@ -41,30 +41,24 @@ public class ProductController {
 
 	@GetMapping("/products")
 	public BulkProductsResponse findProductsByBrand(@RequestParam String brandname) {
-
 		return samebrandproducts.sameBrandProductsMethod(brandname);
-
 	}
 
 	@PutMapping("product/{id}")
 
 	public ProductResponse updateUnitsInProduct(@RequestBody UnitsUpdateRequest unitUpdateValue, @PathVariable String id)
 			throws ProductNotFoundException {
-
 		return updateProductUnitsService.UpdateProductUnits(id, unitUpdateValue);
 	}
 
 	@PostMapping("product")
-	public String postProductDetails(@RequestBody ProductRequest productrequest) throws Exception {
+	public String postProductDetails(@RequestBody @Valid ProductRequest productrequest) throws Exception {
 		return brandChannelValidateAndUpdateService.brandChannelValidateAndUpdateService(productrequest);
-
 	}
 
 	@GetMapping("/product/{id}")
 	public ProductResponse displaydata(@PathVariable String id) throws ProductNotFoundException {
-
 		return (productrepo.findById(UUID.fromString(id))
 				.orElseThrow(() -> new ProductNotFoundException("product not found really")));
-
 	}
 }

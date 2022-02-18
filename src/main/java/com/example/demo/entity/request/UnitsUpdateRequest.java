@@ -1,14 +1,13 @@
 package com.example.demo.entity.request;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Setter
+@Getter
 public class UnitsUpdateRequest {
 private int units;
 
-public int getUnits() {
-	return units;
-}
 
-public void setUnits(int units) {
-	this.units = units;
-}
 
 }
