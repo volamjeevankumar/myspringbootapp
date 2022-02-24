@@ -8,9 +8,9 @@ import javax.validation.constraints.NotNull;
 @Setter
 @Getter
 public class ProductRequest {
-    @NotEmpty
+    @NotEmpty(message = "name cannot be empty or null")
     private String name;
-    @NotEmpty
+    @NotEmpty(message = "brand cannot be empty or null")
     private String brand;
     @NotEmpty
     private String market;
