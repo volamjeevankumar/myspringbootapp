@@ -1,12 +1,17 @@
 package com.example.demo.entity;
 
 import com.example.demo.entity.request.ProductRequest;
+import lombok.AllArgsConstructor;
 
+@AllArgsConstructor
 public class BrandMarketChannel {
 
 	String brand;
 	String market;
 	String channel;
+
+
+
 
 	public BrandMarketChannel(ProductRequest q) {
 		this.brand = q.getBrand();
@@ -18,12 +23,7 @@ public class BrandMarketChannel {
 		super();
 	}
 
-	public BrandMarketChannel(String brand, String market, String channel) {
-		super();
-		this.brand = brand;
-		this.market = market;
-		this.channel = channel;
-	}
+
 
 	
 	public String getBrand() {

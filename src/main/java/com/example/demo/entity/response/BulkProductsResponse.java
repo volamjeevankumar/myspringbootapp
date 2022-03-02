@@ -1,5 +1,4 @@
 package com.example.demo.entity.response;
-
 import java.util.List;
 
 public class BulkProductsResponse {
