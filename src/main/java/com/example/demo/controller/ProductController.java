@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.entity.request.ProductRequest;
 import com.example.demo.entity.request.UnitsUpdateRequest;
+import com.example.demo.entity.response.AllProductResponse;
 import com.example.demo.entity.response.BulkProductsResponse;
 import com.example.demo.entity.response.ProductResponse;
 import com.example.demo.exceptionfamily.ProductNotFoundException;
@@ -11,6 +12,8 @@ import com.example.demo.service.SameBrandProductsService;
 import com.example.demo.service.UpdateProductUnitsService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -38,6 +41,14 @@ public class ProductController {
 	private BrandChannelValidateAndUpdateService brandChannelValidateAndUpdateService;
 	@Autowired
 	private UpdateProductUnitsService updateProductUnitsService;
+
+	private AllProductResponse allProductResponse=new AllProductResponse();
+	@GetMapping("allproducts")
+	public ResponseEntity<AllProductResponse> getAllProducts(){
+		allProductResponse.setProducts(productrepo.findAll());
+		ResponseEntity<AllProductResponse> t=new ResponseEntity<>(allProductResponse, HttpStatus.OK);
+		return t;
+	}
 
 	@GetMapping("/products")
 	public BulkProductsResponse findProductsByBrand(@RequestParam String brandname) {

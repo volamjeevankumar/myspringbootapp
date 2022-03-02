@@ -26,12 +26,13 @@ implementation group: 'org.springframework.boot', name: 'spring-boot-starter-act
 
 	compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.22'
 	annotationProcessor 'org.projectlombok:lombok:1.18.22'
-	
+	implementation "org.springdoc:springdoc-openapi-ui:1.6.3"
 }
 bootJar {
     baseName = 'gs-spring-boot'
     version =  '0.1.0'
 }
+
 test {
 	useJUnitPlatform()
 }
